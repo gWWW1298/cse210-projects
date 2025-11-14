@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 
 // Models a full journal. Responsible only for storing and displaying entries.
-
 public class Journal
 {
     private List<Entry> _entries = new List<Entry>();

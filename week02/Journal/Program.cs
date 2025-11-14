@@ -1,6 +1,6 @@
 using System;
 
-// *** EXCEED REQUIREMENTS ***
+// EXCEED REQUIREMENTS:
 // I added a "Mood" field to each journal entry.
 // This helps users track their emotional patterns over time
 // and adds more value than the basic journaling application.
