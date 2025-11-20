@@ -1,25 +1,59 @@
 
 public class Scripture
 {
-    Reference _reference = new Reference();
-    List<Word> _word = new List<Word>();
+    private Reference _reference;
+    private List<Word> _words = new List<Word>();
+    private Random _rand = new Random();
 
-    public Scripture(Reference Reference, string text)
+    public Scripture(Reference reference, string text)
     {
-        _reference = Reference;
-        _word = text;
+        _reference = reference;
+
+        // Split text into words and create Word objects
+        foreach (string w in text.Split(' '))
+        {
+            _words.Add(new Word(w));
+        }
     }
 
     public void HideRandomWords(int numberToHide)
     {
-        pass
+        // Split into words (removing extra spaces)
+        // string[] words = input.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+        
+        for (int i = 0; i < numberToHide; i++)
+        {
+            // Randomly select a word index
+            int index = _rand.Next(_words.Count);
+            _words[index].Hide();
+        }
     }
+
     public string GetDisplayText()
     {
-        // return string;
+        List<string> output = new List<string>();
+
+        foreach (Word w in _words)
+        {
+            output.Add(w.GetDisplayText());
+        }
+
+        return string.Join(" ", output);
     }
     public bool IsCompletelyHidden()
     {
-        // return bool;
+        return _words.All(w => w.isHidden());
     }
+
+    public int GetHiddenWordCount()
+    {
+        return _words.Count(w => w.isHidden());
+    }
+
+    public int GetTotalWordCount()
+    {
+        return _words.Count;
+    }
+
+
 }
