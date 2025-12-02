@@ -1,4 +1,3 @@
-
 public class ListingActivity : Activity
 {
     private int _count;
@@ -14,37 +13,41 @@ public class ListingActivity : Activity
     public ListingActivity()
     {
         _count = 0;
+
+        SetActivity(
+            "Listing Activity",
+            "This activity helps you reflect on the good things in your life.",
+            0
+        );
     }
+
     public void Run()
     {
         DisplayStartingMessage();
+        int duration = GetDuration();
+
         Random rand = new Random();
-        int promptIndex = rand.Next(_prompts.Count);
-        string selectedPrompt = _prompts[promptIndex];
-        Console.WriteLine("List as many responses as you can to the following prompt:");
+        string selectedPrompt = _prompts[rand.Next(_prompts.Count)];
+
+        Console.WriteLine("\nList as many responses as you can to the following prompt:");
         Console.WriteLine($"--- {selectedPrompt} ---");
-        Console.WriteLine("You may begin in:");
+        Console.WriteLine("\nYou may begin in:");
         ShowCountdown(5);
 
-        DateTime endTime = DateTime.Now.AddSeconds(30); // Example duration of 30 seconds
+        _count = 0;
+        DateTime endTime = DateTime.Now.AddSeconds(duration);
+
         while (DateTime.Now < endTime)
         {
+            Console.Write("> ");
             string response = Console.ReadLine();
+
             if (!string.IsNullOrWhiteSpace(response))
-            {
                 _count++;
-            }
         }
 
-        Console.WriteLine($"You listed {_count} items!");
+        Console.WriteLine($"\nYou listed {_count} items!");
+
         DisplayEndingMessage();
-    }
-    public void GetRandomPrompt()
-    {
-        
-    }
-    public List<string> GetListFromUser()
-    {
-        return _prompts;
     }
 }

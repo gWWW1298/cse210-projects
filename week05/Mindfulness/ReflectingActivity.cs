@@ -1,4 +1,3 @@
-
 public class ReflectingActivity : Activity
 {
     private List<string> _prompts = new List<string>()
@@ -21,29 +20,53 @@ public class ReflectingActivity : Activity
         "What did you learn about yourself through this experience?",
         "How can you keep this experience in mind in the future?"
     };
-    
+
     public ReflectingActivity()
     {
-
+        SetActivity(
+            "Reflection Activity",
+            "This activity will help you reflect on moments of strength and resilience.",
+            0
+        );
     }
+
     public void Run()
     {
+        DisplayStartingMessage();
 
+        int duration = GetDuration();    // Ask user for duration
+
+        Console.WriteLine("\nConsider the following prompt:");
+        Console.WriteLine($"--- {GetRandomPrompt()} ---");
+
+        Console.WriteLine("\nWhen you have something in mind, press Enter to continue.");
+        Console.ReadLine();
+
+        Console.WriteLine("\nNow ponder each of the following questions as they relate to this experience:");
+        Console.WriteLine("You will have time to think after each one.\n");
+
+        DateTime endTime = DateTime.Now.AddSeconds(duration);
+
+        while (DateTime.Now < endTime)
+        {
+            string question = GetRandomQuestion();
+            Console.Write($"> {question} ");
+            Spinner(6);
+            Console.WriteLine();
+        }
+
+        DisplayEndingMessage();
     }
+
     public string GetRandomPrompt()
     {
-        return "";
+        Random rand = new Random();
+        return _prompts[rand.Next(_prompts.Count)];
     }
+
     public string GetRandomQuestion()
     {
-
-    }
-    public void DisplayPrompt()
-    {
-
-    }
-    public void DisplayQuestion()
-    {
-
+        Random rand = new Random();
+        return _questions[rand.Next(_questions.Count)];
     }
 }
