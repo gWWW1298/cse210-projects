@@ -1,5 +1,8 @@
-using System;
+// Exceed Requirement: I have added a new "Affirmation Activity".
+// This activity shows random positive affirmations for the duration specified by the user.
+// It encourages the user and adds a new type of mindfulness activity beyond the core requirements.
 
+using System;
 class Program
 {
     static void Main(string[] args)
@@ -14,7 +17,9 @@ class Program
             Console.WriteLine("1. Breathing Activity");
             Console.WriteLine("2. Listing Activity");
             Console.WriteLine("3. Reflecting Activity");
-            Console.WriteLine("4. Quit");
+            Console.WriteLine("4. Affirmation Activity");
+            Console.WriteLine("5. Quit");
+
             Console.Write("Choose an option: ");
 
             string choice = Console.ReadLine();
@@ -49,13 +54,21 @@ class Program
                     break;
 
                 case "4":
+                    Console.Clear();
+                    AffirmationActivity affirmation = new AffirmationActivity();
+                    affirmation.Run();
+                    Console.WriteLine("\nPress Enter to return to menu...");
+                    Console.ReadLine();
+                    break;
+                case "5":
                     running = false;
                     break;
-
                 default:
                     Console.WriteLine("Invalid choice. Press Enter to continue.");
                     Console.ReadLine();
                     break;
+                
+
             }
         }
     }
