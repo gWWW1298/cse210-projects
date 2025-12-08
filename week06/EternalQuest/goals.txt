@@ -1,0 +1,2 @@
+50
+SimpleGoal|Reading BD|Naruto|50|True
