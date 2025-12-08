@@ -1,34 +1,28 @@
 
-using System;
-
 public abstract class Goal
 {
-    protected string _shortName;
-    protected string _description;
-    protected int _points;
+    private string _name;
+    private string _description;
+    private int _points;
 
-    public Goal(string shortName, string description, int points)
+    public Goal(string name, string description, int points)
     {
-        _shortName = shortName;
+        _name = name;
         _description = description;
         _points = points;
     }
 
-    public string ShortName => _shortName;
-    public string Description => _description;
-    public int Points => _points;
+    // Getters
+    public string GetName() { return _name; }
+    public string GetDescription() { return _description; }
+    public int GetPoints() { return _points; }
 
-    // Called when the user records an event for the goal.
-    // Should return the amount of points awarded by this call (including bonuses).
+    // Setters
+    public void SetName(string name) { _name = name; }
+    public void SetDescription(string desc) { _description = desc; }
+    public void SetPoints(int points) { _points = points; }
+
+    // Polymorphic methods
     public abstract int RecordEvent();
-
-    public abstract bool IsComplete();
-
-    // For display in lists
-    public abstract string GetDetailsString();
-
-    // For saving to file (type and data)
-    public abstract string GetStringRepresentation();
-
-    // Optional: construct a Goal from string representation in derived classes
+    public abstract string GetStatus();
 }
